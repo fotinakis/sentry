@@ -34,8 +34,10 @@ class FindSourceTest(TestCase):
         indexed_sourcemap = sourcemap_to_index(sourcemap)
 
         result = find_source(indexed_sourcemap, 1, 56)
-
         assert result == SourceMap(dst_line=0, dst_col=50, src='foo/file2.js', src_line=0, src_col=9, name='multiply')
+
+        result = find_source(indexed_sourcemap, 1, 0)
+        assert result == SourceMap(dst_line=0, dst_col=0, src='foo/file1.js', src_line=0, src_col=0, name='multiply')
 
 
 class ParseSourcemapTest(TestCase):
